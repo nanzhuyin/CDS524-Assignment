@@ -1,0 +1,203 @@
+:root {
+  --bg0: #f8f6ed;
+  --bg1: #d8dfc9;
+  --panel: #fefcf4;
+  --ink: #1f2a2f;
+  --line: #50665a;
+  --accent: #d46a3c;
+  --accent-2: #2c7a7b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 85% 15%, rgba(212, 106, 60, 0.17), transparent 38%),
+    radial-gradient(circle at 15% 80%, rgba(44, 122, 123, 0.18), transparent 40%),
+    linear-gradient(165deg, var(--bg0), var(--bg1));
+}
+
+.layout {
+  width: min(1400px, 96vw);
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 16px;
+}
+
+.game-panel,
+.info-panel {
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 28px rgba(20, 30, 30, 0.12);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid rgba(80, 102, 90, 0.3);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+#game-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 0 12px 12px;
+  background: #b6c59f;
+}
+
+.info-panel {
+  padding: 14px 16px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+h2 {
+  margin: 12px 0 6px;
+  font-size: 16px;
+}
+
+h3 {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  color: #41534c;
+}
+
+p,
+li,
+label {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.goal {
+  margin: 0 0 8px;
+}
+
+.param-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.param-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.param-grid input {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+#apply-params-btn {
+  grid-column: 1 / -1;
+  background: #fff6ee;
+}
+
+#state-view {
+  margin: 0;
+  min-height: 195px;
+  max-height: 300px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid rgba(80, 102, 90, 0.5);
+  border-radius: 8px;
+  background: #f7f8f1;
+  font-size: 12px;
+}
+
+.model-status {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #394843;
+}
+
+.metrics-panel {
+  border: 1px solid rgba(80, 102, 90, 0.5);
+  border-radius: 10px;
+  background: #f7f8f1;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.metrics-panel p {
+  margin: 4px 0;
+}
+
+.training-chart {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(80, 102, 90, 0.5);
+  border-radius: 8px;
+  background: #fbf9f0;
+  display: block;
+}
+
+.chart-subtitle {
+  margin-top: 10px;
+}
+
+kbd {
+  border: 1px solid #8aa087;
+  border-radius: 5px;
+  background: #eef4ea;
+  padding: 1px 5px;
+}
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .toggle {
+    margin-left: 0;
+  }
+}

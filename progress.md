@@ -1,0 +1,43 @@
+
+## 2026-02-23
+- Parsed assignment rubric and sample report.
+- Confirmed required deliverables for development portion:
+  - Clear objective/rules, explicit state/action space, reward design.
+  - Q-learning with epsilon-greedy, learning rate, discount factor.
+  - UI showing game state, agent action, and reward/penalty.
+- Next: implement a playable tank game with online Q-learning enemy and verification loop.
+- Implemented first complete web game build:
+  - `index.html`, `style.css`, `game.js`, `README.md`.
+  - Added player tank controls, AI tank, bullets, obstacles, and episode reset.
+  - Added online Q-learning (Q-table, epsilon-greedy, alpha/gamma, terminal update).
+  - Added real-time UI panel for state/action/reward and parameter tuning.
+  - Exposed `window.render_game_to_text` and `window.advanceTime(ms)` for automated checks.
+- Updated input compatibility for automated testing:
+  - Player now supports both `WASD` and arrow keys.
+- Next: run browser automation tests, inspect screenshots, and fix gameplay bugs.
+- Environment/test setup updates:
+  - Added `package.json` and installed Playwright dependencies for validation.
+  - Installed browser runtime (`npx playwright install chromium`).
+  - Installed `playwright` in the skill directory to satisfy skill-client module resolution.
+- Automated validation completed:
+  - Ran `web_game_playwright_client.js` with default actions.
+  - Ran a second pass with extended actions (`output/actions-extended.json`) covering up/down/left/right/shoot.
+  - Captured screenshots and `render_game_to_text` snapshots under `output/web-game*`.
+  - No runtime JS errors were emitted by the Playwright client.
+- Added training-curve and model persistence features:
+  - New UI controls: save/load/clear model.
+  - Added training chart canvas with episode return, moving average return, and moving enemy win-rate.
+  - Added localStorage persistence for Q-table, learning params, and training history.
+  - Added status label showing model save/load state.
+- Regression re-test completed after save/load + chart changes:
+  - Ran Playwright with extended actions against updated build.
+  - Captured artifacts in `output/web-game-save-load`.
+  - No runtime JS errors in automation output.
+- Added full-history persistence and export:
+  - Removed capped history behavior; now keeps all episode records.
+  - Added per-episode detailed records (return, reason, epsilon, q-states, wins, explored/exploited).
+  - Added `导出训练结果` button to download one JSON snapshot containing full data and curve PNG Base64.
+  - Updated load/save to include full episode records.
+- Export verification:
+  - Automated browser test confirmed `导出训练结果` triggers JSON download.
+  - Verified JSON contains `snapshot.stats.episodes` (full episode records) and `chart.imagePngDataUrl` (curve PNG).

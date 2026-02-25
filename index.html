@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDS524 Tank Q-Learning Game</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="game-panel">
+      <header class="toolbar">
+        <button id="start-btn" type="button">开始 / 继续</button>
+        <button id="pause-btn" type="button">暂停</button>
+        <button id="reset-btn" type="button">重置回合</button>
+        <button id="save-model-btn" type="button">保存模型</button>
+        <button id="load-model-btn" type="button">加载模型</button>
+        <button id="clear-model-btn" type="button">清空模型</button>
+        <button id="export-results-btn" type="button">导出训练结果</button>
+        <label class="toggle">
+          <input id="train-toggle" type="checkbox" checked>
+          AI训练模式
+        </label>
+        <label class="toggle">
+          <input id="auto-player-toggle" type="checkbox" checked>
+          玩家自动控制
+        </label>
+      </header>
+      <canvas id="game-canvas" width="960" height="600" aria-label="Tank game canvas"></canvas>
+    </section>
+
+    <aside class="info-panel">
+      <h1>坦克设计游戏 (Q-Learning)</h1>
+      <p class="goal">目标：玩家坦克击败敌方AI坦克，或观察AI通过奖励学习更优策略。</p>
+
+      <section>
+        <h2>控制</h2>
+        <ul>
+          <li><kbd>WASD</kbd> 移动玩家坦克</li>
+          <li><kbd>Space</kbd> 发射子弹</li>
+          <li><kbd>P</kbd> 暂停/继续</li>
+          <li><kbd>F</kbd> 全屏切换</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Q-learning 参数</h2>
+        <div class="param-grid">
+          <label>epsilon
+            <input id="epsilon-input" type="number" min="0" max="1" step="0.01" value="0.28">
+          </label>
+          <label>alpha
+            <input id="alpha-input" type="number" min="0" max="1" step="0.01" value="0.18">
+          </label>
+          <label>gamma
+            <input id="gamma-input" type="number" min="0" max="1" step="0.01" value="0.92">
+          </label>
+          <button id="apply-params-btn" type="button">应用参数</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>实时状态</h2>
+        <pre id="state-view"></pre>
+      </section>
+
+      <section>
+        <h2>训练曲线</h2>
+        <canvas id="training-chart" class="training-chart" width="420" height="220" aria-label="Training chart"></canvas>
+        <h3 class="chart-subtitle">近20回合曲线</h3>
+        <canvas id="training-chart-recent" class="training-chart" width="420" height="220" aria-label="Recent training chart"></canvas>
+        <p id="model-status" class="model-status">模型状态：未保存</p>
+      </section>
+
+      <section>
+        <h2>训练指标</h2>
+        <div id="training-metrics" class="metrics-panel">
+          <p>等待训练数据更新...</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>评分点映射</h2>
+        <ul>
+          <li>状态空间：相对位置、血量、威胁标记</li>
+          <li>动作空间：上/下/左/右/停留/射击</li>
+          <li>奖励函数：生存奖励、命中奖励、受击惩罚、撞墙惩罚</li>
+          <li>UI显示：状态、动作、奖励、累计回报</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>

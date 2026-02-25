@@ -1,0 +1,16 @@
+{
+  "name": "new-project",
+  "version": "1.0.0",
+  "description": "这个项目是一个“坦克对战 + 强化学习”示例，实现目标是覆盖作业 rubric 的开发项与大部分文档项。",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
